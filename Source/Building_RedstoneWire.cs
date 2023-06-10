@@ -15,17 +15,9 @@ class Building_RedstoneWire : Building {
     static readonly Vector3 addDrawPos = new Vector3(0, 0.1f, 0);
     int prevMatId;
     Material matCopy;
-    bool prevOn;
 
     public override void Draw() {
         base.Draw();
-
-        bool isOn = (compRedstonePower.PowerLevel > 0);
-        if( isOn != prevOn ){
-            prevOn = isOn;
-            // only for glower
-            BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
-        }
 
         if( compRedstonePower.PowerLevel > 0 ){
             Mesh mesh = Graphic.MeshAt(Rotation);

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-  <ThingDef ParentName="BuildingBase">
+  
+  <ThingDef Name="RedstoneBuildingBase" ParentName="BuildingBase" Abstract="True">
     <designationCategory>Blocky</designationCategory>
+    <category>Building</category>
+    <researchPrerequisites>
+      <li>Redstone</li>
+    </researchPrerequisites>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
     <defName>RedstoneWire</defName>
     <label>redstone wire</label>
     <description>Redstone wire can transmit power, which can be used to operate mechanism components (doors, pistons, redstone lamps, etc.)</description>
     <thingClass>RedstoneLogic.Building_RedstoneWire</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>RedstoneLogic/RedstoneWire_Atlas</texPath>
       <color>(0.4, 0, 0)</color>
@@ -66,18 +74,12 @@
     <constructEffect>ConstructMetal</constructEffect>
     <clearBuildingArea>false</clearBuildingArea>
     <designationHotKey>Misc1</designationHotKey>
-    <researchPrerequisites>
-      <li>Redstone</li>
-    </researchPrerequisites>
-    <tickerType>Normal</tickerType>
   </ThingDef>
 
-  <ThingDef ParentName="BuildingBase">
-    <designationCategory>Blocky</designationCategory>
+  <ThingDef ParentName="RedstoneBuildingBase">
     <defName>RedstoneTorch</defName>
     <label>redstone torch</label>
     <description>Redstone torches can be used to power blocks and transmission components such as redstone dust, activate mechanism components such as pistons. Produces a small amount of light.</description>
-    <category>Building</category>
     <graphicData>
       <texPath>Blocky/R/RedstoneTorch</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -93,7 +95,6 @@
     <passability>PassThroughOnly</passability>
     <pathCost>14</pathCost>
     <constructEffect>ConstructWood</constructEffect>
-    <tickerType>Normal</tickerType>
     <!--drawerType>RealtimeOnly</drawerType-->
     <fillPercent>0.15</fillPercent>
     <statBases>
@@ -127,8 +128,66 @@
     </comps>
     <uiOrder>2800</uiOrder>
     <designationHotKey>Misc10</designationHotKey>
-    <researchPrerequisites>
-      <li>Redstone</li>
-    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>RedstoneLamp</defName>
+    <label>redstone lamp</label>
+    <description>A redstone lamp is a block that produces light when activated with a redstone signal.</description>
+    <thingClass>Building</thingClass>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <selectable>true</selectable>
+    <fillPercent>0.50</fillPercent>
+    <pathCost>20</pathCost>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <rotatable>false</rotatable>
+    <thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
+    <graphicData>
+      <texPath>Blocky/R/RedstoneLamp_north</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRedstonePowerTransmitter</compClass>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_RedstoneGlower">
+        <glowRadius>12</glowRadius>
+        <glowColor>(214,148,94,0)</glowColor>
+        <colorPickerEnabled>true</colorPickerEnabled>
+        <darklightToggle>true</darklightToggle>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_PoweredGraphic">
+        <graphicData>
+          <texPath>Blocky/R/RedstoneLampOn_north</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <drawSize>(1, 1)</drawSize>
+        </graphicData>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>300</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Mass>4</Mass>
+    </statBases>
+    <costList>
+      <Steel>20</Steel> <!-- FIXME -->
+    </costList>
+    <uiOrder>2990</uiOrder>
+    <uiIconScale>0.75</uiIconScale>
+    <designationHotKey>Misc11</designationHotKey>
   </ThingDef>
 </Defs>

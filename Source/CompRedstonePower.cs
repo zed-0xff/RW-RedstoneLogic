@@ -8,6 +8,7 @@ namespace RedstoneLogic;
 public class CompRedstonePower : ThingComp {
     protected int powerLevel;
     protected int lastPoweredTick;
+    bool prevOn;
 
     CompProperties_RedstonePower Props => (CompProperties_RedstonePower)props;
 
@@ -48,6 +49,13 @@ public class CompRedstonePower : ThingComp {
             powerLevel--;
         }
 
+        bool isOn = (powerLevel > 0);
+        if( isOn != prevOn ){
+            prevOn = isOn;
+            // only for glower
+            parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
+        }
+
         if( PowerLevel <= 1 ) return;
 
         foreach (IntVec3 cell in GenAdj.CellsAdjacentCardinal(parent)){
@@ -61,5 +69,7 @@ public class CompRedstonePower : ThingComp {
     public override string CompInspectStringExtra(){
         return "power level: " + PowerLevel;
     }
+
+    // FIXME: scribe
 }
 
