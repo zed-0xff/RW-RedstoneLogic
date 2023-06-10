@@ -1,0 +1,7 @@
+TODO
+
+*.dll
+*.pdb
+
+obj
+bin

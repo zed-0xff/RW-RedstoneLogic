@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <designationCategory>Blocky</designationCategory>
+    <defName>RedstoneWire</defName>
+    <label>redstone wire</label>
+    <description>Redstone wire can transmit power, which can be used to operate mechanism components (doors, pistons, redstone lamps, etc.)</description>
+    <thingClass>RedstoneLogic.Building_RedstoneWire</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>RedstoneLogic/RedstoneWire_Atlas</texPath>
+      <color>(0.4, 0, 0)</color>
+      <graphicClass>Graphic_Single</graphicClass>
+      <linkType>Transmitter</linkType>
+      <linkFlags>
+        <li>PowerConduit</li>
+      </linkFlags>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+    <uiIconScale>0.7</uiIconScale>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>true</isInert>
+      <isEdifice>false</isEdifice>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</texPath>
+      </blueprintGraphicData>
+    </building>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <altitudeLayer>Conduits</altitudeLayer>
+    <passability>Standable</passability>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <statBases>
+      <MaxHitPoints>40</MaxHitPoints>
+      <WorkToBuild>35</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Beauty>-1</Beauty>
+    </statBases>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <costList>
+      <Steel>1</Steel>
+        <!--RedstoneDust>1</RedstoneDust> FIXME -->
+    </costList>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRedstonePowerTransmitter</compClass>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_RedstoneGlower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(220,0,0,0)</glowColor>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_Conduit</li>
+    </placeWorkers>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <uiOrder>2000</uiOrder>
+    <constructEffect>ConstructMetal</constructEffect>
+    <clearBuildingArea>false</clearBuildingArea>
+    <designationHotKey>Misc1</designationHotKey>
+    <researchPrerequisites>
+      <li>Redstone</li>
+    </researchPrerequisites>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <designationCategory>Blocky</designationCategory>
+    <defName>RedstoneTorch</defName>
+    <label>redstone torch</label>
+    <description>Redstone torches can be used to power blocks and transmission components such as redstone dust, activate mechanism components such as pistons. Produces a small amount of light.</description>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Blocky/R/RedstoneTorch</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawRotated>false</drawRotated>
+      <damageData>
+        <rect>(0.35,0.35,0.3,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <!--uiIconPath>Things/Building/Misc/TorchLamp_MenuIcon</uiIconPath-->
+    <uiIconScale>0.85</uiIconScale>
+    <rotatable>false</rotatable>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>14</pathCost>
+    <constructEffect>ConstructWood</constructEffect>
+    <tickerType>Normal</tickerType>
+    <!--drawerType>RealtimeOnly</drawerType-->
+    <fillPercent>0.15</fillPercent>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <WorkToBuild>100</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+    <selectable>true</selectable>
+    <costList>
+      <WoodLog>20</WoodLog>
+        <!--RedstoneDust>5</RedtoneDust> FIXME -->
+    </costList>
+    <building>
+      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+    </building>
+    <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <placeWorkers>
+      <li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(220,0,0,0)</glowColor>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRedstonePowerGenerator</compClass>
+      </li>
+    </comps>
+    <uiOrder>2800</uiOrder>
+    <designationHotKey>Misc10</designationHotKey>
+    <researchPrerequisites>
+      <li>Redstone</li>
+    </researchPrerequisites>
+  </ThingDef>
+</Defs>

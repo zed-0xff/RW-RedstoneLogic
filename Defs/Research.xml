@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+  <!--ResearchTabDef>
+    <defName>Blocky</defName>
+    <label>Blocky</label>
+  </ResearchTabDef-->
+
+  <ResearchProjectDef>
+    <defName>Redstone</defName>
+    <label>Redstone</label>
+    <description>FIXME</description>
+    <baseCost>512</baseCost>
+    <techLevel>Medieval</techLevel>
+  </ResearchProjectDef>
+</Defs>
