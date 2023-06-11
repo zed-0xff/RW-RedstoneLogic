@@ -25,7 +25,7 @@
     <graphicData>
       <texPath>RedstoneLogic/RedstoneWire_Atlas</texPath>
       <color>(0.4, 0, 0)</color>
-      <graphicClass>RedstoneLogic.GraphicRedstoneWire</graphicClass>
+      <graphicClass>RedstoneLogic.Graphic_RedstoneWire</graphicClass>
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
       </damageData>
@@ -37,7 +37,8 @@
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>
       <blueprintGraphicData>
-        <texPath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</texPath>
+        <graphicClass>RedstoneLogic.Graphic_RedstoneWire</graphicClass>
+        <texPath>RedstoneLogic/RedstoneWire_Atlas</texPath>
       </blueprintGraphicData>
     </building>
     <drawerType>MapMeshAndRealTime</drawerType>
@@ -77,6 +78,9 @@
     <constructEffect>ConstructMetal</constructEffect>
     <clearBuildingArea>false</clearBuildingArea>
     <designationHotKey>Misc1</designationHotKey>
+    <modExtensions>
+      <li Class="Blocky.Core.ExtUseBlueprintAsPreview"/>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
