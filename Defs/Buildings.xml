@@ -4,6 +4,7 @@
   <ThingDef Name="RedstoneBuildingBase" ParentName="BuildingBase" Abstract="True">
     <designationCategory>Blocky</designationCategory>
     <category>Building</category>
+    <altitudeLayer>Building</altitudeLayer>
     <tickerType>Normal</tickerType>
     <researchPrerequisites>
       <li>Redstone</li>
@@ -15,6 +16,8 @@
         </defs>
       </li>
     </modExtensions>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <uiIconScale>0.75</uiIconScale>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -31,7 +34,6 @@
       </damageData>
     </graphicData>
     <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
-    <uiIconScale>0.7</uiIconScale>
     <building>
       <ai_chillDestination>false</ai_chillDestination>
       <isInert>true</isInert>
@@ -72,7 +74,6 @@
     <rotatable>false</rotatable>
     <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <uiOrder>2000</uiOrder>
     <constructEffect>ConstructMetal</constructEffect>
@@ -96,13 +97,10 @@
       </damageData>
     </graphicData>
     <!--uiIconPath>Things/Building/Misc/TorchLamp_MenuIcon</uiIconPath-->
-    <uiIconScale>0.85</uiIconScale>
     <rotatable>false</rotatable>
-    <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <pathCost>14</pathCost>
     <constructEffect>ConstructWood</constructEffect>
-    <!--drawerType>RealtimeOnly</drawerType-->
     <fillPercent>0.15</fillPercent>
     <statBases>
       <MaxHitPoints>75</MaxHitPoints>
@@ -140,13 +138,10 @@
     <description>A redstone lamp is a block that produces light when activated with a redstone signal.</description>
     <thingClass>Building</thingClass>
     <minifiedDef>MinifiedThing</minifiedDef>
-    <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <selectable>true</selectable>
     <fillPercent>0.50</fillPercent>
     <pathCost>20</pathCost>
-    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
-    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <rotatable>false</rotatable>
     <thingCategories>
       <li>BuildingsFurniture</li>
@@ -185,13 +180,59 @@
       <MaxHitPoints>50</MaxHitPoints>
       <WorkToBuild>300</WorkToBuild>
       <Flammability>0</Flammability>
-      <Mass>4</Mass>
+      <Mass>20</Mass>
     </statBases>
     <costList>
       <Steel>20</Steel> <!-- FIXME -->
     </costList>
     <uiOrder>2990</uiOrder>
-    <uiIconScale>0.75</uiIconScale>
     <designationHotKey>Misc11</designationHotKey>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>DaylightDetector</defName>
+    <label>daylight detector</label>
+    <description>A daylight detector can be used to produce redstone power in proportion to the daylight cycle.
+Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.</description>
+    <thingClass>Building</thingClass>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <passability>PassThroughOnly</passability>
+    <selectable>true</selectable>
+    <fillPercent>0.25</fillPercent>
+    <pathCost>10</pathCost>
+    <rotatable>false</rotatable>
+    <thingCategories>
+      <li>BuildingsFurniture</li> <!-- FIXME -->
+    </thingCategories>
+    <graphicData>
+      <texPath>Blocky/D/DaylightDetector_north</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shadowData>
+        <volume>(0.3, 0.3, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_DaylightDetector">
+        <moonGraphicData>
+          <texPath>Blocky/D/DaylightDetectorInverted_north</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <shadowData>
+            <volume>(0.3, 0.3, 0.3)</volume>
+            <offset>(0,0,-0.1)</offset>
+          </shadowData>
+        </moonGraphicData>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>300</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Mass>10</Mass>
+    </statBases>
+    <costList>
+      <Steel>20</Steel> <!-- FIXME -->
+    </costList>
   </ThingDef>
 </Defs>

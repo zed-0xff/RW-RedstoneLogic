@@ -6,11 +6,11 @@ using Blocky.Core;
 namespace RedstoneLogic;
 
 public class CompRedstonePower : ThingComp {
+    public const int MaxPower = 15;
+
     protected int powerLevel;
     protected int lastPoweredTick;
     bool prevOn;
-
-    CompProperties_RedstonePower Props => (CompProperties_RedstonePower)props;
 
     public virtual int PowerLevel {
         get { return powerLevel < 0 ? 0 : powerLevel; }
@@ -70,6 +70,10 @@ public class CompRedstonePower : ThingComp {
         return "power level: " + PowerLevel;
     }
 
-    // FIXME: scribe
+    public override void PostExposeData() {
+        base.PostExposeData();
+        Scribe_Values.Look(ref powerLevel, "powerLevel", 0);
+        Scribe_Values.Look(ref lastPoweredTick, "lastPoweredTick", 0);
+    }
 }
 
