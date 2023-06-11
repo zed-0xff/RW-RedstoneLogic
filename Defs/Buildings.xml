@@ -18,6 +18,13 @@
     </modExtensions>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <uiIconScale>0.75</uiIconScale>
+    <statBases>
+      <Flammability>0</Flammability>
+      <Beauty>-1</Beauty>
+    </statBases>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -35,7 +42,6 @@
     </graphicData>
     <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
     <building>
-      <ai_chillDestination>false</ai_chillDestination>
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>
       <blueprintGraphicData>
@@ -51,13 +57,10 @@
     <statBases>
       <MaxHitPoints>40</MaxHitPoints>
       <WorkToBuild>35</WorkToBuild>
-      <Flammability>0</Flammability>
-      <Beauty>-1</Beauty>
     </statBases>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <costList>
-      <Steel>1</Steel>
-        <!--RedstoneDust>1</RedstoneDust> FIXME -->
+      <Redstone>1</Redstone>
     </costList>
     <comps>
       <li Class="RedstoneLogic.CompProperties_RedstonePower">
@@ -96,7 +99,6 @@
         <rect>(0.35,0.35,0.3,0.3)</rect>
       </damageData>
     </graphicData>
-    <!--uiIconPath>Things/Building/Misc/TorchLamp_MenuIcon</uiIconPath-->
     <rotatable>false</rotatable>
     <passability>PassThroughOnly</passability>
     <pathCost>14</pathCost>
@@ -105,12 +107,12 @@
     <statBases>
       <MaxHitPoints>75</MaxHitPoints>
       <WorkToBuild>100</WorkToBuild>
-      <Flammability>0</Flammability>
+      <Beauty>0</Beauty>
     </statBases>
     <selectable>true</selectable>
     <costList>
       <WoodLog>20</WoodLog>
-        <!--RedstoneDust>5</RedtoneDust> FIXME -->
+      <Redstone>5</Redstone>
     </costList>
     <building>
       <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
@@ -179,11 +181,11 @@
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <WorkToBuild>300</WorkToBuild>
-      <Flammability>0</Flammability>
       <Mass>20</Mass>
+      <Beauty>0</Beauty>
     </statBases>
     <costList>
-      <Steel>20</Steel> <!-- FIXME -->
+      <Redstone>20</Redstone>
     </costList>
     <uiOrder>2990</uiOrder>
     <designationHotKey>Misc11</designationHotKey>
@@ -228,11 +230,11 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <WorkToBuild>300</WorkToBuild>
-      <Flammability>0</Flammability>
       <Mass>10</Mass>
     </statBases>
     <costList>
-      <Steel>20</Steel> <!-- FIXME -->
+      <Redstone>10</Redstone>
+      <Steel>10</Steel>
     </costList>
   </ThingDef>
 </Defs>

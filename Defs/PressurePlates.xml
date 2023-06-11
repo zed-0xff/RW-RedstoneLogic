@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+  <DesignatorDropdownGroupDef>
+    <defName>PressurePlates</defName>
+  </DesignatorDropdownGroupDef>
+
+  <ThingDef Name="PressurePlateBase" ParentName="RedstoneBuildingBase" Abstract="True">
+    <designatorDropdown>PressurePlates</designatorDropdown>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <passability>Standable</passability>
+    <rotatable>false</rotatable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <stealable>false</stealable>
+    <costList>
+      <Redstone>10</Redstone>
+    </costList>
+  </ThingDef>
+
+  <ThingDef ParentName="PressurePlateBase">
+    <defName>WoodenPressurePlate</defName>
+    <label>pressure plate</label>
+    <description>Wooden pressure plates can detect all entities.</description>
+    <graphicData>
+      <texPath>RedstoneLogic/WoodenPressurePlate</texPath>
+    </graphicData>
+    <statBases>
+      <Flammability>1</Flammability>
+    </statBases>
+    <costStuffCount>10</costStuffCount>
+    <stuffCategories>
+      <li>Woody</li>
+    </stuffCategories>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_PressurePlate">
+        <type>Any</type>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="PressurePlateBase">
+    <defName>StonePressurePlate</defName>
+    <label>pressure plate</label>
+    <description>Stone pressure plates can detect only pawns/animals.</description>
+    <graphicData>
+      <texPath>RedstoneLogic/StonePressurePlate</texPath>
+    </graphicData>
+    <costStuffCount>10</costStuffCount>
+    <stuffCategories>
+      <li>Stony</li>
+    </stuffCategories>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_PressurePlate">
+        <type>Pawns</type>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="PressurePlateBase">
+    <defName>LightPressurePlate</defName>
+    <label>light weighted pressure plate</label>
+    <description>Can detect all entities, and the signal strength equals the number of entities stood on one.</description>
+    <graphicData>
+      <texPath>RedstoneLogic/LightWeightedPressurePlate</texPath>
+    </graphicData>
+    <costList>
+      <Gold>100</Gold>
+    </costList>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_PressurePlate">
+        <type>Light</type>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="PressurePlateBase">
+    <defName>HeavyPressurePlate</defName>
+    <label>heavy weighted pressure plate</label>
+    <description>Similar to light weighted pressure plates, but measures groups of 10 entities.</description>
+    <graphicData>
+      <texPath>RedstoneLogic/HeavyWeightedPressurePlate</texPath>
+    </graphicData>
+    <costList>
+      <Steel>10</Steel>
+    </costList>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_PressurePlate">
+        <type>Heavy</type>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

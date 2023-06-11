@@ -1,5 +1,4 @@
 using RimWorld;
-using System;
 using Verse;
 using Blocky.Core;
 
@@ -34,13 +33,6 @@ public class CompRedstonePower : ThingComp {
         CompCache<CompRedstonePower>.Remove(this);
     }
 
-    public virtual void TryPushPower(int amount){
-        if( amount >= powerLevel ){
-            powerLevel = Math.Max(amount, powerLevel);
-            lastPoweredTick = Find.TickManager.TicksGame;
-        }
-    }
-
     public override void CompTick(){
         base.CompTick();
         if( !TransmitsPower ) return;
@@ -56,13 +48,14 @@ public class CompRedstonePower : ThingComp {
             parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
         }
 
-        if( PowerLevel <= 1 ) return;
+        int loss = this is CompRedstonePowerTransmitter ? 1 : 0;
+        if( PowerLevel <= loss ) return;
 
         foreach (IntVec3 cell in GenAdj.CellsAdjacentCardinal(parent)){
             CompRedstonePower neighbor = CompCache<CompRedstonePower>.Get(cell, parent.Map);
-            if( neighbor == null ) continue;
-
-            neighbor.TryPushPower(PowerLevel-1);
+            if( neighbor is CompRedstonePowerTransmitter pt ){
+                pt.TryPushPower(PowerLevel - loss);
+            }
         }
     }
 
