@@ -4,12 +4,11 @@ using Verse;
 
 namespace RedstoneLogic;
 
-public class CompRedstonePowerTransmitter : CompRedstonePower {
-    public virtual void TryPushPower(int amount){
-        if( amount >= powerLevel ){
-            powerLevel = Math.Max(amount, powerLevel);
-            lastPoweredTick = Find.TickManager.TicksGame;
-        }
+public class CompRedstonePowerTransmitter : CompRedstonePowerReceiver {
+    public override bool TryPushPower(int amount, CompRedstonePower src){
+        bool r = base.TryPushPower(amount, src);
+        if( r ) PushNext(src);
+        return r;
     }
 }
 

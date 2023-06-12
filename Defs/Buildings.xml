@@ -237,4 +237,50 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
       <Steel>10</Steel>
     </costList>
   </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>Repeater</defName>
+    <label>repeater</label>
+    <description>A redstone repeater can be used in four different ways: to "repeat" redstone signals back to full strength, delay signals, prevent signals moving backwards, or to "lock" signals in one state.</description>
+    <thingClass>Building</thingClass>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <passability>PassThroughOnly</passability>
+    <selectable>true</selectable>
+    <fillPercent>0.25</fillPercent>
+    <pathCost>10</pathCost>
+    <rotatable>true</rotatable>
+    <thingCategories>
+      <li>BuildingsFurniture</li> <!-- FIXME -->
+    </thingCategories>
+    <graphicData>
+      <texPath>Blocky/R/RepeaterOff</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shadowData>
+        <volume>(0.3, 0.3, 0.3)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRepeater</compClass>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_PoweredGraphic">
+        <graphicData>
+          <texPath>Blocky/R/RepeaterOn</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>(1.5, 1.5)</drawSize>
+        </graphicData>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>300</WorkToBuild>
+      <Mass>10</Mass>
+    </statBases>
+    <costList>
+      <Redstone>15</Redstone>
+      <Steel>20</Steel>
+    </costList>
+  </ThingDef>
 </Defs>

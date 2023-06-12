@@ -23,6 +23,7 @@ public class CompDaylightDetector : CompRedstonePower {
             powerLevel = Mathf.RoundToInt(MaxPower*GenCelestial.CurCelestialSunGlow(parent.Map));
         }
 
+        PushNext();
         base.CompTick();
     }
 

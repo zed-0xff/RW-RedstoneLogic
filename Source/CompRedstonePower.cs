@@ -33,12 +33,26 @@ public class CompRedstonePower : ThingComp {
         CompCache<CompRedstonePower>.Remove(this);
     }
 
-    public override void CompTick(){
-        base.CompTick();
-        if( !TransmitsPower ) return;
+    protected void PushNext(CompRedstonePower src = null){
+        int loss = this is CompRedstonePowerTransmitter ? 1 : 0;
+        if( PowerLevel <= loss ) return;
 
-        if( Find.TickManager.TicksGame - lastPoweredTick > 1 && powerLevel > 0 ){
-            powerLevel--;
+        foreach (IntVec3 cell in GenAdj.CellsAdjacentCardinal(parent)){
+            CompRedstonePower neighbor = CompCache<CompRedstonePower>.Get(cell, parent.Map);
+            if( neighbor is CompRedstonePowerTransmitter pt && pt != src ){
+                pt.TryPushPower(PowerLevel - loss, this);
+            }
+        }
+    }
+
+    public override void CompTick(){
+        if( !TransmitsPower ){
+            powerLevel = 0;
+            return;
+        }
+
+        if( Find.TickManager.TicksGame - lastPoweredTick > 0 ){
+            powerLevel = 0;
         }
 
         bool isOn = (powerLevel > 0);
@@ -46,16 +60,6 @@ public class CompRedstonePower : ThingComp {
             prevOn = isOn;
             // only for glower
             parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
-        }
-
-        int loss = this is CompRedstonePowerTransmitter ? 1 : 0;
-        if( PowerLevel <= loss ) return;
-
-        foreach (IntVec3 cell in GenAdj.CellsAdjacentCardinal(parent)){
-            CompRedstonePower neighbor = CompCache<CompRedstonePower>.Get(cell, parent.Map);
-            if( neighbor is CompRedstonePowerTransmitter pt ){
-                pt.TryPushPower(PowerLevel - loss);
-            }
         }
     }
 

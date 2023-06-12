@@ -43,6 +43,7 @@ public class CompPressurePlate : CompRedstonePower {
                 break;
         }
 
+        PushNext();
         base.CompTick();
     }
     public override string CompInspectStringExtra(){
