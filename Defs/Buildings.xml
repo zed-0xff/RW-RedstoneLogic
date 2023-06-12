@@ -151,14 +151,11 @@
     <graphicData>
       <texPath>Blocky/R/RedstoneLamp_north</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shadowData>
-        <volume>(0.3, 0.6, 0.3)</volume>
-        <offset>(0,0,-0.1)</offset>
-      </shadowData>
       <damageData>
         <rect>(0.2,0.2,0.6,0.6)</rect>
       </damageData>
     </graphicData>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
     <drawerType>MapMeshAndRealTime</drawerType>
     <comps>
       <li Class="RedstoneLogic.CompProperties_RedstonePower">
@@ -192,6 +189,41 @@
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>RedstoneBlock</defName>
+    <label>block of redstone</label>
+    <description>A block of redstone acts as a permanently powered redstone power source that can be pushed by pistons.</description>
+    <thingClass>Building</thingClass>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <passability>Impassable</passability>
+    <selectable>true</selectable>
+    <fillPercent>0.50</fillPercent>
+    <pathCost>20</pathCost>
+    <rotatable>true</rotatable>
+    <thingCategories>
+      <li>BuildingsFurniture</li> <!-- FIXME -->
+    </thingCategories>
+    <graphicData>
+      <texPath>Blocky/R/RedstoneBlock</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+    </graphicData>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRedstonePowerGenerator</compClass>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>300</WorkToBuild>
+      <Mass>20</Mass>
+      <Beauty>0</Beauty>
+    </statBases>
+    <costList>
+      <Redstone>50</Redstone>
+    </costList>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
     <defName>DaylightDetector</defName>
     <label>daylight detector</label>
     <description>A daylight detector can be used to produce redstone power in proportion to the daylight cycle.
@@ -209,21 +241,14 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <graphicData>
       <texPath>Blocky/D/DaylightDetector_north</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shadowData>
-        <volume>(0.3, 0.3, 0.3)</volume>
-        <offset>(0,0,-0.1)</offset>
-      </shadowData>
     </graphicData>
+    <staticSunShadowHeight>0.2</staticSunShadowHeight>
     <drawerType>MapMeshAndRealTime</drawerType>
     <comps>
       <li Class="RedstoneLogic.CompProperties_DaylightDetector">
         <moonGraphicData>
           <texPath>Blocky/D/DaylightDetectorInverted_north</texPath>
           <graphicClass>Graphic_Single</graphicClass>
-          <shadowData>
-            <volume>(0.3, 0.3, 0.3)</volume>
-            <offset>(0,0,-0.1)</offset>
-          </shadowData>
         </moonGraphicData>
       </li>
     </comps>
@@ -255,11 +280,8 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <graphicData>
       <texPath>Blocky/R/RepeaterOff</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <shadowData>
-        <volume>(0.3, 0.3, 0.3)</volume>
-        <offset>(0,0,-0.1)</offset>
-      </shadowData>
     </graphicData>
+    <staticSunShadowHeight>0.1</staticSunShadowHeight>
     <drawerType>MapMeshAndRealTime</drawerType>
     <comps>
       <li Class="RedstoneLogic.CompProperties_RedstonePower">
