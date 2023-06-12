@@ -224,6 +224,56 @@
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>RedstoneTNT</defName>
+    <label>TNT</label>
+    <description>TNT is a block that can be primed by a redstone signal, flint and steel, stray fire, flaming projectile or explosion.</description>
+    <thingClass>Building</thingClass>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <passability>PassThroughOnly</passability>
+    <selectable>true</selectable>
+    <fillPercent>0.50</fillPercent>
+    <pathCost>20</pathCost>
+    <rotatable>true</rotatable>
+    <thingCategories>
+      <li>BuildingsFurniture</li> <!-- FIXME -->
+    </thingCategories>
+    <graphicData>
+      <texPath>Blocky/T/Tnt</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+    </graphicData>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <statBases>
+      <MaxHitPoints>1000</MaxHitPoints> <!-- more minecraft-like chain of non-immediate explosions -->
+      <WorkToBuild>300</WorkToBuild>
+      <Mass>5</Mass>
+      <Beauty>-5</Beauty>
+    </statBases>
+    <costList>
+      <Redstone>10</Redstone>
+      <Shell_HighExplosive>1</Shell_HighExplosive>
+    </costList>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <compClass>RedstoneLogic.CompTNT</compClass>
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>4.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explodeOnKilled>false</explodeOnKilled>
+        <startWickOnDamageTaken>
+          <li MayRequire="Ludeon.RimWorld.Biotech">Beam</li>
+          <li>Bomb</li>
+          <li>Bullet</li>
+          <li>Flame</li>
+        </startWickOnDamageTaken>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRedstonePoweredExplosive</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
     <defName>DaylightDetector</defName>
     <label>daylight detector</label>
     <description>A daylight detector can be used to produce redstone power in proportion to the daylight cycle.
