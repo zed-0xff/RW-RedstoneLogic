@@ -10,53 +10,58 @@ namespace RedstoneLogic;
 
 public class CompRepeater : CompRedstonePowerReceiver {
     int delay = 1;
-    Queue<bool> queue = new Queue<bool>();
-
-    class Value {
-        public bool value;
-        public int tickNo;
-    }
 
     const int MaxDelay = 250; // rare tick
-
-    BitArray values = new BitArray(MaxDelay);
+    BitArray values = new BitArray(MaxDelay); // ring buffer
+    int ptr;
+    int pushTick;
+    int saveTick;
 
     public int Delay {
         get { return delay; }
-        set { delay = value; }
+        set {
+            delay = value;
+            for( int i=delay; i<MaxDelay; i++)
+                values[i] = false;
+        }
     }
 
     // 1. push power from queue if not pushed this turn
     // 2. enqueue value if not enqueued this turn
     // 3. update enqueued value if enqueued 0, but now got 1
-    void idempotentTick(){
-        IntVec3 posOut = parent.Position + IntVec3.North.RotatedBy(parent.Rotation);
+    void idempotentTick(bool value){
+        if( pushTick != Find.TickManager.TicksGame ){
+            pushTick = Find.TickManager.TicksGame;
+            if( ++ptr >= delay ) ptr = 0;
 
-        var dst = CompCache<CompRedstonePower>.Get(posOut, parent.Map) as CompRedstonePowerTransmitter;
-
-        // queue.Count is O(1)
-        if( queue.Count <= delay ){
-            powerLevel = 0;
-            return;
+            if( values[ptr] ){
+                powerLevel = MaxPower;
+                IntVec3 posOut = parent.Position + IntVec3.North.RotatedBy(parent.Rotation);
+                var dst = CompCache<CompRedstonePower>.Get(posOut, parent.Map) as CompRedstonePowerReceiver;
+                if( dst != null )
+                    dst.TryPushPower(MaxPower, this);
+            } else {
+                powerLevel = 0;
+            }
         }
 
-        while( queue.Count > delay ){
-            bool state = queue.Dequeue();
-            powerLevel = state ? MaxPower : 0;
-            if( dst != null )
-                dst.TryPushPower(powerLevel, this);
+        if( saveTick == Find.TickManager.TicksGame ){
+            values[ptr] = values[ptr] | value;
+        } else {
+            saveTick = Find.TickManager.TicksGame;
+            values[ptr] = value;
         }
     }
 
     public override bool TryPushPower(int amount, CompRedstonePower src){
         if( amount <= 0 ) return false;
 
-        IntVec3 posIn  = parent.Position + IntVec3.South.RotatedBy(parent.Rotation);
+        IntVec3 posIn = parent.Position + IntVec3.South.RotatedBy(parent.Rotation);
         if( src.parent.Position != posIn )
             return false;
 
         lastPoweredTick = Find.TickManager.TicksGame;
-        idempotentTick();
+        idempotentTick(amount > 0);
 
         return true;
     }
@@ -64,7 +69,7 @@ public class CompRepeater : CompRedstonePowerReceiver {
     public override void CompTick(){
         if( !TransmitsPower ) return;
 
-        idempotentTick();
+        idempotentTick(false);
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra(){
@@ -80,9 +85,8 @@ public class CompRepeater : CompRedstonePowerReceiver {
                      Func<int, string> textGetter = ((int ticks) => string.Format("{0} ticks = {1:F2}s", ticks, ticks.TicksToSeconds()));
                      Find.WindowStack.Add( new Dialog_Slider(textGetter, 1, MaxDelay, delegate(int value)
                          {
-                         delay = value;
                          foreach( object obj in Find.Selector.SelectedObjects){
-                            if( obj is Thing t && t != parent && CompCache<CompRedstonePower>.Get(t.Position, t.Map) is CompRepeater r2 )
+                            if( obj is Thing t && CompCache<CompRedstonePower>.Get(t.Position, t.Map) is CompRepeater r2 )
                                 r2.Delay = value;
                          }
                          }, delay));
@@ -93,45 +97,44 @@ public class CompRepeater : CompRedstonePowerReceiver {
     public override string CompInspectStringExtra(){
         string s = base.CompInspectStringExtra() + "\n" +
             "delay".Translate() + ": " + delay + " " + "ticks".Translate();
-        if( Prefs.DevMode ){
-            s += "\nqueue size: " + queue.Count;
-        }
         return s;
     }
 
     public override void PostExposeData() {
         base.PostExposeData();
         Scribe_Values.Look(ref delay, "delay", 1);
+        Scribe_Values.Look(ref ptr, "ptr");
+        Scribe_Values.Look(ref saveTick, "saveTick");
+        Scribe_Values.Look(ref pushTick, "pushTick");
 
         switch( Scribe.mode ){
             case LoadSaveMode.LoadingVars:
                 string tl = null;
-                Scribe_Values.Look(ref tl, "queue");
+                Scribe_Values.Look(ref tl, "values");
                 if( !tl.NullOrEmpty() ){
-                    string2queue(tl);
+                    string2values(tl);
                 }
                 break;
             case LoadSaveMode.Saving:
-                string ts = queue2string();
+                string ts = values2string();
                 if( !ts.NullOrEmpty() ){
-                    Scribe_Values.Look(ref ts, "queue");
+                    Scribe_Values.Look(ref ts, "values");
                 }
                 break;
         }
     }
 
-    void string2queue(string s){
-        queue.Clear();
+    void string2values(string s){
         for(int i=0; i<s.Length; i++){
-            queue.Enqueue( s[i] == '1' );
+            values[i] = ( s[i] == '1' );
         }
     }
 
-    string queue2string(){
-        char[] chars = new char[queue.Count];
+    string values2string(){
+        char[] chars = new char[values.Count];
         int i = 0;
         bool was = false;
-        foreach( bool b in queue ){
+        foreach( bool b in values ){
             was |= b;
             chars[i++] = b ? '1' : '0';
         }

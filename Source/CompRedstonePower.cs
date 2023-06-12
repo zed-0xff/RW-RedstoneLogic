@@ -9,7 +9,7 @@ public class CompRedstonePower : ThingComp {
 
     protected int powerLevel;
     protected int lastPoweredTick;
-    bool prevOn;
+//    bool prevOn;
 
     public virtual int PowerLevel {
         get { return powerLevel < 0 ? 0 : powerLevel; }
@@ -39,7 +39,7 @@ public class CompRedstonePower : ThingComp {
 
         foreach (IntVec3 cell in GenAdj.CellsAdjacentCardinal(parent)){
             CompRedstonePower neighbor = CompCache<CompRedstonePower>.Get(cell, parent.Map);
-            if( neighbor is CompRedstonePowerTransmitter pt && pt != src ){
+            if( neighbor is CompRedstonePowerReceiver pt && pt != src ){
                 pt.TryPushPower(PowerLevel - loss, this);
             }
         }
@@ -55,12 +55,12 @@ public class CompRedstonePower : ThingComp {
             powerLevel = 0;
         }
 
-        bool isOn = (powerLevel > 0);
-        if( isOn != prevOn ){
-            prevOn = isOn;
-            // only for glower
-            parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
-        }
+//        bool isOn = (powerLevel > 0);
+//        if( isOn != prevOn ){
+//            prevOn = isOn;
+//            // only for glower
+//            parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
+//        }
     }
 
     public override string CompInspectStringExtra(){

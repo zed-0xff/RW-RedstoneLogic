@@ -66,10 +66,10 @@
       <li Class="RedstoneLogic.CompProperties_RedstonePower">
         <compClass>RedstoneLogic.CompRedstonePowerTransmitter</compClass>
       </li>
-      <li Class="RedstoneLogic.CompProperties_RedstoneGlower">
+      <!--li Class="RedstoneLogic.CompProperties_RedstoneGlower">
         <glowRadius>1</glowRadius>
         <glowColor>(220,0,0,0)</glowColor>
-      </li>
+      </li-->
     </comps>
     <placeWorkers>
       <li>RedstoneLogic.PlaceWorker_RedstoneWire</li>
