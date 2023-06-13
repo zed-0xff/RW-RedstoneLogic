@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-  <DesignatorDropdownGroupDef>
+  <!--DesignatorDropdownGroupDef>
     <defName>PressurePlates</defName>
-  </DesignatorDropdownGroupDef>
+  </DesignatorDropdownGroupDef-->
 
   <ThingDef Name="PressurePlateBase" ParentName="RedstoneBuildingBase" Abstract="True">
-    <designatorDropdown>PressurePlates</designatorDropdown>
+    <!--designatorDropdown>PressurePlates</designatorDropdown-->
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
@@ -19,6 +19,33 @@
   </ThingDef>
 
   <ThingDef ParentName="PressurePlateBase">
+    <defName>PressurePlate</defName>
+    <label>pressure plate</label>
+    <description>Wooden pressure plates can detect all entities.
+
+Stone pressure plates can detect only pawns/animals.
+
+Golden ("Light") detect all entities, and the signal strength equals the number of entities stood on one.
+
+Steel ("Heavy") is similar to golden, but measures groups of 10 entities.</description>
+    <graphicData>
+      <texPath>RedstoneLogic/PressurePlate</texPath>
+      <graphicClass>Graphic_Appearances</graphicClass>
+    </graphicData>
+    <costStuffCount>10</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_PressurePlate">
+        <type>Auto</type>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!--ThingDef ParentName="PressurePlateBase">
     <defName>WoodenPressurePlate</defName>
     <label>pressure plate</label>
     <description>Wooden pressure plates can detect all entities.</description>
@@ -89,5 +116,5 @@
         <type>Heavy</type>
       </li>
     </comps>
-  </ThingDef>
+  </ThingDef-->
 </Defs>
