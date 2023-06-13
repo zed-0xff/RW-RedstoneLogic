@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
   <DesignationCategoryDef>
-    <defName>Blocky</defName>
-    <label>blocky</label>
-    <order>599</order>
+    <defName>RedstoneLogic</defName>
+    <label>Redstone</label> <!-- "Redstone Logic" is too long :( -->
+    <order>398</order>
     <specialDesignatorClasses>
       <li>Designator_Cancel</li>
       <li>Designator_Deconstruct</li>

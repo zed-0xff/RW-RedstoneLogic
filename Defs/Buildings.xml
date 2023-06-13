@@ -2,7 +2,7 @@
 <Defs>
   
   <ThingDef Name="RedstoneBuildingBase" ParentName="BuildingBase" Abstract="True">
-    <designationCategory>Blocky</designationCategory>
+    <designationCategory>RedstoneLogic</designationCategory>
     <category>Building</category>
     <altitudeLayer>Building</altitudeLayer>
     <tickerType>Normal</tickerType>
