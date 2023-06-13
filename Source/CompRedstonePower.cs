@@ -9,7 +9,7 @@ public class CompRedstonePower : ThingComp {
 
     protected int powerLevel;
     protected int lastPoweredTick;
-//    bool prevOn;
+    bool prevOn;
 
     public virtual int PowerLevel {
         get { return powerLevel < 0 ? 0 : powerLevel; }
@@ -55,12 +55,12 @@ public class CompRedstonePower : ThingComp {
             powerLevel = 0;
         }
 
-//        bool isOn = (powerLevel > 0);
-//        if( isOn != prevOn ){
-//            prevOn = isOn;
-//            // only for glower
-//            parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
-//        }
+        bool isOn = (powerLevel > 0);
+        if( isOn != prevOn ){
+            prevOn = isOn;
+            // for glowers and power switch
+            parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
+        }
     }
 
     public override string CompInspectStringExtra(){
