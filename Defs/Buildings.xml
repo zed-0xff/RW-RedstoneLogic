@@ -24,6 +24,7 @@
     </statBases>
     <building>
       <ai_chillDestination>false</ai_chillDestination>
+      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
     </building>
   </ThingDef>
 
@@ -114,9 +115,6 @@
       <WoodLog>20</WoodLog>
       <Redstone>5</Redstone>
     </costList>
-    <building>
-      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
-    </building>
     <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
@@ -132,6 +130,53 @@
     </comps>
     <uiOrder>2800</uiOrder>
     <designationHotKey>Misc10</designationHotKey>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>TripwireHook</defName>
+    <label>tripwire hook</label>
+    <description>Emits a redstone signal when it is part of a valid tripwire circuit and it gets triggered by an entity.</description>
+    <graphicData>
+      <texPath>Blocky/T/TripwireHook</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawRotated>false</drawRotated>
+      <shadowData>
+        <volume>(0.2, 0.4, 0.2)</volume>
+        <offset>(0,0,-0.23)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.35,0.35,0.3,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <passability>PassThroughOnly</passability>
+    <pathCost>10</pathCost>
+    <constructEffect>ConstructWood</constructEffect>
+    <fillPercent>0.15</fillPercent>
+    <statBases>
+      <MaxHitPoints>30</MaxHitPoints>
+      <WorkToBuild>100</WorkToBuild>
+      <Beauty>-5</Beauty>
+    </statBases>
+    <selectable>true</selectable>
+    <costList>
+      <Cloth>1</Cloth>
+      <WoodLog>5</WoodLog>
+      <Steel>5</Steel>
+      <Redstone>5</Redstone>
+    </costList>
+    <building>
+    </building>
+    <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_Tripwire"/>
+    </comps>
+    <placeWorkers>
+      <li>RedstoneLogic.PlaceWorker_Tripwire</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
