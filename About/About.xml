@@ -2,7 +2,7 @@
 <ModMetaData>
   <name>Redstone Logic</name>
   <author>zed_0xff</author>
-  <packageId>RedstoneLogic</packageId>
+  <packageId>Blocky.RedstoneLogic</packageId>
   <url>https://github.com/zed-0xff/RW-RedstoneLogic</url>
   <supportedVersions>
     <li>1.4</li>
