@@ -281,11 +281,10 @@
     </modExtensions>
   </ThingDef>
 
-  <ThingDef ParentName="RedstoneBuildingBase">
+  <ThingDef Name="RedstonePiston" ParentName="RedstoneBuildingBase">
     <defName>RedstonePiston</defName>
     <label>piston</label>
     <description>A piston is a block capable of pushing most entities and blocks when given a redstone signal.</description>
-    <thingClass>RedstoneLogic.Building_Piston</thingClass>
     <minifiedDef>MinifiedThing</minifiedDef>
     <passability>Impassable</passability>
     <selectable>true</selectable>
@@ -299,6 +298,14 @@
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>Cutout</shaderType>
     </graphicData>
+    <building>
+      <blueprintGraphicData>
+        <graphicClass>Graphic_Multi</graphicClass>
+        <texPath>Blocky/P/Piston</texPath>
+        <shaderType>EdgeDetect</shaderType>
+      </blueprintGraphicData>
+    </building>
+    <uiIconPath>Blocky/P/Piston_north</uiIconPath>
     <drawerType>MapMeshAndRealTime</drawerType>
     <staticSunShadowHeight>0.5</staticSunShadowHeight>
     <altitudeLayer>BuildingBelowTop</altitudeLayer>
@@ -328,22 +335,60 @@
       </li>
     </comps>
     <statBases>
-      <MaxHitPoints>200</MaxHitPoints>
-      <WorkToBuild>300</WorkToBuild>
-      <Mass>20</Mass>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>500</WorkToBuild>
+      <Mass>40</Mass>
       <Beauty>-5</Beauty>
     </statBases>
     <costList>
       <Redstone>10</Redstone>
-      <Steel>10</Steel>
+      <Steel>20</Steel>
       <WoodLog>10</WoodLog>
     </costList>
-    <!--costStuffCount>10</costStuffCount>
-    <stuffCategories>
-      <li>Metallic</li>
-      <li>Woody</li>
-      <li>Stony</li>
-    </stuffCategories-->
+    <modExtensions>
+      <li Class="Blocky.Core.ExtUseBlueprintAsPreview"/>
+    </modExtensions>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstonePiston">
+    <defName>RedstoneStickyPiston</defName>
+    <label>sticky piston</label>
+    <description>A piston is a block capable of pushing most entities and blocks when given a redstone signal.
+A sticky piston is a variant that can additonally pull most blocks when it retracts.</description>
+    <uiIconPath>Blocky/S/StickyPiston_north</uiIconPath>
+    <building>
+      <blueprintGraphicData>
+        <texPath>Blocky/S/StickyPiston</texPath>
+      </blueprintGraphicData>
+    </building>
+    <costList>
+      <Redstone>20</Redstone>
+    </costList>
+    <comps Inherit="False">
+      <li Class="RedstoneLogic.CompProperties_Piston">
+        <baseSpeed>5</baseSpeed>
+        <shortGraphicData>
+          <texPath>Blocky/S/StickyPistonHead</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawOffset>(0, -0.1, 0)</drawOffset>
+          <drawOffsetNorth>(0, 0.1, 0)</drawOffsetNorth>
+        </shortGraphicData>
+        <longGraphicData>
+          <texPath>Blocky/S/StickyPistonHeadLong</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawOffset>(0, -0.1, 0)</drawOffset>
+          <drawSize>(2,2)</drawSize>
+        </longGraphicData>
+        <shaftGraphicData>
+          <texPath>Blocky/P/PistonShaft_north_fix</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawOffset>(0, -0.1, 0)</drawOffset>
+        </shaftGraphicData>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
