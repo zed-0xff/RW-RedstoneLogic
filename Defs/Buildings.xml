@@ -130,6 +130,11 @@
     </comps>
     <uiOrder>2800</uiOrder>
     <designationHotKey>Misc10</designationHotKey>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable">
+        <breaks>true</breaks>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -177,6 +182,11 @@
     <placeWorkers>
       <li>RedstoneLogic.PlaceWorker_Tripwire</li>
     </placeWorkers>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable">
+        <breaks>true</breaks>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -230,6 +240,9 @@
     </costList>
     <uiOrder>2990</uiOrder>
     <designationHotKey>Misc11</designationHotKey>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable"/>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -263,6 +276,9 @@
     <costList>
       <Redstone>50</Redstone>
     </costList>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable"/>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -279,14 +295,16 @@
       <li>BuildingsFurniture</li> <!-- FIXME -->
     </thingCategories>
     <graphicData>
-      <texPath>Blocky/P/Piston</texPath>
+      <texPath>Blocky/P/PistonBase</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <shaderType>Cutout</shaderType>
     </graphicData>
     <drawerType>MapMeshAndRealTime</drawerType>
     <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <altitudeLayer>BuildingBelowTop</altitudeLayer>
     <comps>
       <li Class="RedstoneLogic.CompProperties_Piston">
+        <baseSpeed>5</baseSpeed>
         <shortGraphicData>
           <texPath>Blocky/P/PistonHead</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
@@ -375,6 +393,9 @@
         <compClass>RedstoneLogic.CompRedstonePoweredExplosive</compClass>
       </li>
     </comps>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable"/>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -414,6 +435,9 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
       <Redstone>10</Redstone>
       <Steel>10</Steel>
     </costList>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable"/>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
@@ -456,5 +480,8 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
       <Redstone>15</Redstone>
       <Steel>20</Steel>
     </costList>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable"/>
+    </modExtensions>
   </ThingDef>
 </Defs>

@@ -24,6 +24,9 @@ public class CompRedstonePower : ThingComp {
         }
     }
 
+    // had power in this or previous tick
+    public bool HasPowerRelaxed => Find.TickManager.TicksGame - lastPoweredTick < 2;
+
     public override void PostSpawnSetup(bool respawningAfterLoad){
         base.PostSpawnSetup(respawningAfterLoad);
         CompCache<CompRedstonePower>.Add(this);
@@ -31,6 +34,11 @@ public class CompRedstonePower : ThingComp {
 
     public override void PostDeSpawn(Map map){
         CompCache<CompRedstonePower>.Remove(this);
+    }
+
+    public void Notify_Teleported(){
+        CompCache<CompRedstonePower>.Remove(this);
+        CompCache<CompRedstonePower>.Add(this);
     }
 
     protected void PushNext(CompRedstonePower src = null){
