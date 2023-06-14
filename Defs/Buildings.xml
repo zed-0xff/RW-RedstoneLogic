@@ -287,22 +287,26 @@
     <staticSunShadowHeight>0.5</staticSunShadowHeight>
     <comps>
       <li Class="RedstoneLogic.CompProperties_Piston">
-        <shaftGraphicData>
-          <texPath>Blocky/P/PistonShaft</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <shaderType>Cutout</shaderType>
-          <drawOffsetNorth>(0,   -0.1, 0.07)</drawOffsetNorth>
-          <drawOffsetSouth>(0,   -0.1,-0.2)</drawOffsetSouth>
-          <drawOffsetEast>( 0.14,-0.1, 0)</drawOffsetEast>
-          <drawOffsetWest>(-0.14,-0.1, 0)</drawOffsetWest>
-        </shaftGraphicData>
-        <headGraphicData>
+        <shortGraphicData>
           <texPath>Blocky/P/PistonHead</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <shaderType>Cutout</shaderType>
+          <drawOffset>(0, -0.1, 0)</drawOffset>
           <drawOffsetNorth>(0, 0.1, 0)</drawOffsetNorth>
-          <drawOffsetSouth>(0,-0.2, 0)</drawOffsetSouth>
-        </headGraphicData>
+        </shortGraphicData>
+        <longGraphicData>
+          <texPath>Blocky/P/PistonHeadLong</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawOffset>(0, -0.1, 0)</drawOffset>
+          <drawSize>(2,2)</drawSize>
+        </longGraphicData>
+        <shaftGraphicData>
+          <texPath>Blocky/P/PistonShaft_north_fix</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <shaderType>Cutout</shaderType>
+          <drawOffset>(0, -0.1, 0)</drawOffset>
+        </shaftGraphicData>
       </li>
     </comps>
     <statBases>
