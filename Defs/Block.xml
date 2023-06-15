@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <designationCategory>RedstoneLogic</designationCategory>
+    <defName>Blocky_Block</defName>
+    <label>block</label>
+    <description>Just a simple stuffable block that can be pushed by pistons. Think of it as a movable wall.</description>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <passability>Impassable</passability>
+    <selectable>true</selectable>
+    <fillPercent>0.50</fillPercent>
+    <rotatable>false</rotatable>
+    <tickerType>Never</tickerType>
+    <thingCategories>
+      <li>BuildingsFurniture</li> <!-- FIXME -->
+    </thingCategories>
+    <graphicData>
+      <texPath>Blocky/S/SnowBlock</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+    </graphicData>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <blockWind>true</blockWind>
+    <blockLight>true</blockLight>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <holdsRoof>true</holdsRoof>
+    <useStuffTerrainAffordance>true</useStuffTerrainAffordance>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded> <!-- Best affordance needed for stone -->
+    <statBases>
+      <Flammability>1</Flammability>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>170</WorkToBuild>
+      <Mass>20</Mass>
+      <Beauty>-1</Beauty>
+    </statBases>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable"/>
+    </modExtensions>
+    <uiIconScale>0.75</uiIconScale>
+    <building>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+    </building>
+    <costStuffCount>10</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+  </ThingDef>
+
+</Defs>

@@ -366,6 +366,7 @@ A sticky piston is a variant that can additonally pull most blocks when it retra
     </costList>
     <comps Inherit="False">
       <li Class="RedstoneLogic.CompProperties_Piston">
+        <sticky>true</sticky>
         <baseSpeed>5</baseSpeed>
         <shortGraphicData>
           <texPath>Blocky/S/StickyPistonHead</texPath>

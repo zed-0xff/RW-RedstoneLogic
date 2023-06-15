@@ -1,6 +1,6 @@
 <Patch>
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="TorchLamp" or defName="Campfire"]</xpath>
+    <xpath>Defs/ThingDef[defName="TorchLamp" or defName="Campfire" or defName="GlowPod"]</xpath>
     <value>
       <modExtensions>
         <li Class="RedstoneLogic.ExtPistonMoveable">

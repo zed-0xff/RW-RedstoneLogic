@@ -36,7 +36,7 @@ public class CompRedstonePower : ThingComp {
         CompCache<CompRedstonePower>.Remove(this);
     }
 
-    public void Notify_Teleported(){
+    public virtual void Notify_Teleported(){
         CompCache<CompRedstonePower>.Remove(this);
         CompCache<CompRedstonePower>.Add(this);
     }
