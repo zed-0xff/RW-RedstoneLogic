@@ -10,6 +10,7 @@ public class CompProperties_Piston : CompProperties_RedstonePower {
     public float longSize = 0.5f;
     public int baseSpeed = 10; // ticks
     public bool sticky;
+    public IntRange damageRange = new IntRange(15, 30);
 
 	public CompProperties_Piston() {
 		compClass = typeof(CompPiston);

@@ -2,8 +2,10 @@ using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Verse.AI;
 using Verse.Sound;
 using Verse;
+using Blocky.Core;
 
 namespace RedstoneLogic;
 
@@ -11,20 +13,29 @@ public class CompPiston : CompRedstonePowerReceiver {
     CompProperties_Piston Props => (CompProperties_Piston)props;
 
     float openPct;
-    public float OpenPct => openPct;
+    protected float OpenPct => openPct;
+    public bool IsWalkable => openPct < 0.5f;
 
-    IntVec3 direction;
-    IntVec3 pistonCell;
+    IntVec3 direction, pistonCell;
+    bool pushedThisCycle, pulledThisCycle;
 
     public override void PostSpawnSetup(bool respawningAfterLoad){
         base.PostSpawnSetup(respawningAfterLoad);
         direction = IntVec3.South.RotatedBy(parent.Rotation);
         pistonCell = parent.Position + direction;
+        CompCache<CompPiston>.Add(this, parent.Map, pistonCell);
+    }
+
+    public override void PostDeSpawn(Map map){
+        CompCache<CompPiston>.Remove(this);
+        base.PostDeSpawn(map);
     }
 
     public override void Notify_Teleported(){
         base.Notify_Teleported();
         pistonCell = parent.Position + direction;
+        CompCache<CompPiston>.Remove(this);
+        CompCache<CompPiston>.Add(this, parent.Map, pistonCell);
     }
 
     public override bool TryPushPower(int amount, CompRedstonePower src){
@@ -156,6 +167,28 @@ public class CompPiston : CompRedstonePowerReceiver {
         if( processedThings.Contains(t) ) return;
         processedThings.Add(t);
 
+        if( t is Pawn pawn ){
+            pawn.Position = newPos;
+            pawn.Notify_Teleported();
+            if( !newPos.Walkable(parent.Map) ){
+                var dt = new BattleLogEntry_DamageTaken(pawn, VDefOf.DamageEvent_Piston);
+                Find.BattleLog.Add(dt);
+                float dmg = Props.damageRange.RandomInRange;
+                //Log.Warning("[d] [" + Find.TickManager.TicksGame + "] " + this + " damaging " + pawn + " on " + dmg + " dmg");
+                var dinfo = new DamageInfo(DamageDefOf.Blunt, GenMath.RoundRandom(dmg), 0f, -1f, null, null, null, DamageInfo.SourceCategory.Collapse);
+                dinfo.SetBodyRegion(BodyPartHeight.Middle, BodyPartDepth.Outside);
+                pawn.TakeDamage(dinfo).AssociateWithLog(dt);
+                dinfo.SetAmount(dmg/4);
+                parent.TakeDamage(dinfo);
+            }
+            return;
+        }
+
+        // prevent flicking when 2 pistons push against each other
+        CompPiston piston2 = CompCache<CompPiston>.Get(newPos, parent.Map);
+        if( piston2 != null && piston2 != this && !piston2.IsWalkable )
+            return;
+
         if( t is Building_Storage bs ){
             // e.g. Blocky.Frame, or chest
             IntVec3 dir = newPos - bs.Position;
@@ -215,8 +248,7 @@ public class CompPiston : CompRedstonePowerReceiver {
             if( t is Blueprint )
                 continue;
             if( t is Pawn p ){
-                p.Position = nextCell;
-                p.Notify_Teleported();
+                MoveThing(t, nextCell, processedThings);
                 continue;
             }
 
@@ -229,6 +261,9 @@ public class CompPiston : CompRedstonePowerReceiver {
     }
 
     void PushThings(){
+        if( pushedThisCycle ) return;
+        pushedThisCycle = true;
+
         IntVec3 nextCell = pistonCell + direction;
         HashSet<Thing> processedThings = new HashSet<Thing>();
 
@@ -282,8 +317,7 @@ public class CompPiston : CompRedstonePowerReceiver {
             if( t is Blueprint )
                 continue;
             if( t is Pawn p ){
-                p.Position = nextCell;
-                p.Notify_Teleported();
+                MoveThing(t, nextCell, processedThings);
                 continue;
             }
 
@@ -296,6 +330,9 @@ public class CompPiston : CompRedstonePowerReceiver {
     }
 
     void PullThings(){
+        if( pulledThisCycle ) return;
+        pulledThisCycle = true;
+
         IntVec3 nextCell = pistonCell + direction;
         HashSet<Thing> processedThings = new HashSet<Thing>();
 
@@ -321,8 +358,7 @@ public class CompPiston : CompRedstonePowerReceiver {
         }
     }
 
-    public override void CompTick(){
-        base.CompTick();
+    void TickWorker(){
         if( !CanExtend() ){
             openPct = 0;
             return;
@@ -330,21 +366,36 @@ public class CompPiston : CompRedstonePowerReceiver {
 
         // TODO: sound
         if( HasPowerRelaxed ){
+            pulledThisCycle = false;
             if( openPct < 1f ){
                 openPct += 1f / Props.baseSpeed;
                 if( openPct > 1f ) openPct = 1f;
-            }
-            if( openPct > 0.5f ){
-                PushThings();
+                if( openPct > 0.5f ){
+                    PushThings();
+                }
             }
         } else {
+            pushedThisCycle = false;
             if( openPct > 0f ){
                 openPct -= 1f / Props.baseSpeed;
                 if( openPct < 0f ) openPct = 0f;
+                if( openPct < 0.5f && Props.sticky ){
+                    PullThings();
+                }
             }
-            if( openPct < 0.5f && Props.sticky ){
-                PullThings();
-            }
+        }
+    }
+
+    public override void CompTick(){
+        base.CompTick();
+        bool prevWalkable = IsWalkable;
+        TickWorker();
+        bool curWalkable = IsWalkable;
+
+        if( prevWalkable != curWalkable ){
+            // XXX maybe expensive with many pistons
+            // TODO: optimize, maybe check only every 4th tick
+            parent.Map.pathing.RecalculatePerceivedPathCostAt(pistonCell);
         }
     }
 
@@ -388,6 +439,8 @@ public class CompPiston : CompRedstonePowerReceiver {
     public override void PostExposeData() {
         base.PostExposeData();
         Scribe_Values.Look(ref openPct, "openPct");
+        Scribe_Values.Look(ref pushedThisCycle, "pushedThisCycle");
+        Scribe_Values.Look(ref pulledThisCycle, "pulledThisCycle");
     }
 }
 

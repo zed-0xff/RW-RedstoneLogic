@@ -11,6 +11,7 @@
     <selectable>true</selectable>
     <fillPercent>0.50</fillPercent>
     <rotatable>false</rotatable>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
     <tickerType>Never</tickerType>
     <thingCategories>
       <li>BuildingsFurniture</li> <!-- FIXME -->

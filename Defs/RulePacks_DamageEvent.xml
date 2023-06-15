@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RulePackDef>
+    <defName>DamageEvent_Piston</defName>
+    <include>
+      <li>DamageEvent_Include</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>damage_source->[piston] [extended]</li>
+
+        <li>piston->a piston</li>
+        <li>piston->the piston</li>
+
+        <li>extended->extended at</li>
+
+        <li>damaged_present->smashing</li>
+        <li>damaged_present->bashing</li>
+        <li>damaged_present->bruising</li>
+        <li>damaged_present->lacerating</li>
+
+        <li>destroyed_present->shattering</li>
+        <li>destroyed_present->crushing</li>
+        <li>destroyed_present->obliterating</li>
+        <li>destroyed_present->annihilating</li>
+        <li>destroyed_present->breaking</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+</Defs>
