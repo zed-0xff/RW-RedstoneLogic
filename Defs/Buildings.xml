@@ -89,6 +89,53 @@
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>RedstoneLever</defName>
+    <label>lever</label>
+    <description>A lever is a non-solid block that can provide switchable redstone power.</description>
+    <thingClass>RedstoneLogic.Building_Lever</thingClass>
+    <graphicData>
+      <texPath>Blocky/L/Lever</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawRotated>false</drawRotated>
+      <damageData>
+        <rect>(0.35,0.35,0.3,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <passability>PassThroughOnly</passability>
+    <pathCost>14</pathCost>
+    <constructEffect>ConstructWood</constructEffect>
+    <fillPercent>0.15</fillPercent>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <WorkToBuild>100</WorkToBuild>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <selectable>true</selectable>
+    <costList>
+      <WoodLog>20</WoodLog>
+      <Redstone>5</Redstone>
+    </costList>
+    <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRedstonePowerGenerator</compClass>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+    </comps>
+    <uiOrder>2800</uiOrder>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable">
+        <breaks>true</breaks>
+      </li>
+    </modExtensions>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
     <defName>RedstoneTorch</defName>
     <label>redstone torch</label>
     <description>Redstone torches can be used to power blocks and transmission components such as redstone dust, activate mechanism components such as pistons. Produces a small amount of light.</description>
