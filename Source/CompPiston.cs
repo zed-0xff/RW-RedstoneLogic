@@ -163,7 +163,7 @@ public class CompPiston : CompRedstonePowerReceiver {
         }
     }
 
-    void MoveThing(Thing t, IntVec3 newPos, HashSet<Thing> processedThings){
+    void MoveThing(Thing t, IntVec3 newPos, HashSet<Thing> processedThings, ExtPistonMoveable ext = null){
         if( processedThings.Contains(t) ) return;
         processedThings.Add(t);
 
@@ -210,7 +210,13 @@ public class CompPiston : CompRedstonePowerReceiver {
             return;
         }
 
-        t.Position = newPos;
+        if( ext != null && ext.respawn ){
+            t.DeSpawn();
+            t.Position = newPos;
+            t.SpawnSetup(parent.Map, false);
+        } else {
+            t.Position = newPos;
+        }
 
         var pComp = t.TryGetComp<CompRedstonePower>();
         if( pComp != null ){
@@ -284,7 +290,7 @@ public class CompPiston : CompRedstonePowerReceiver {
                     continue;
                 }
                 if( ext.moveable ){
-                    MoveThing(t, nextCell, processedThings);
+                    MoveThing(t, nextCell, processedThings, ext);
                     continue;
                 }
             }
@@ -342,7 +348,7 @@ public class CompPiston : CompRedstonePowerReceiver {
             var ext = t.def.GetModExtension<ExtPistonMoveable>();
             if( ext != null ){
                 if( ext.moveable ){
-                    MoveThing(t, pistonCell, processedThings);
+                    MoveThing(t, pistonCell, processedThings, ext);
                     continue;
                 }
             }

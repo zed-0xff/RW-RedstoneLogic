@@ -9,7 +9,7 @@
     <minifiedDef>MinifiedThing</minifiedDef>
     <passability>Impassable</passability>
     <selectable>true</selectable>
-    <fillPercent>0.50</fillPercent>
+    <fillPercent>1</fillPercent>
     <rotatable>false</rotatable>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <tickerType>Never</tickerType>
@@ -17,8 +17,8 @@
       <li>BuildingsFurniture</li> <!-- FIXME -->
     </thingCategories>
     <graphicData>
-      <texPath>Blocky/S/SnowBlock</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Blocky/Block</texPath>
+      <graphicClass>Graphic_Appearances</graphicClass>
     </graphicData>
     <staticSunShadowHeight>0.5</staticSunShadowHeight>
     <blockWind>true</blockWind>
@@ -31,12 +31,9 @@
       <Flammability>1</Flammability>
       <MaxHitPoints>300</MaxHitPoints>
       <WorkToBuild>170</WorkToBuild>
-      <Mass>20</Mass>
+      <Mass>50</Mass>
       <Beauty>-1</Beauty>
     </statBases>
-    <modExtensions>
-      <li Class="RedstoneLogic.ExtPistonMoveable"/>
-    </modExtensions>
     <uiIconScale>0.75</uiIconScale>
     <building>
       <isInert>true</isInert>
@@ -49,6 +46,11 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable">
+        <respawn>true</respawn>
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </Defs>
