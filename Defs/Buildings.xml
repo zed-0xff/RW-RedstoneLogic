@@ -41,7 +41,7 @@
         <rect>(0,0.35,1,0.3)</rect>
       </damageData>
     </graphicData>
-    <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+    <uiIconPath>RedstoneLogic/RedstoneWire_Icon</uiIconPath>
     <building>
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>

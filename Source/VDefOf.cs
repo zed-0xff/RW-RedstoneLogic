@@ -9,4 +9,6 @@ public static class VDefOf {
     public static ThingDef TripwireHook;
 
     public static RulePackDef DamageEvent_Piston;
+
+    public static DesignationCategoryDef RedstoneLogic;
 }

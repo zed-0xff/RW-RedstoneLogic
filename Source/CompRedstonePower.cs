@@ -1,15 +1,21 @@
 using RimWorld;
 using Verse;
 using Blocky.Core;
+using UnityEngine;
 
 namespace RedstoneLogic;
 
+[StaticConstructorOnStartup]
 public class CompRedstonePower : ThingComp {
     public const int MaxPower = 15;
 
     protected int powerLevel;
     protected int lastPoweredTick;
     bool prevOn;
+
+    static Graphic wireGraphic = GraphicDatabase.Get<Graphic_RedstoneWire>(
+            "RedstoneLogic/RedstoneWire_Atlas", ShaderDatabase.MetaOverlay, Vector2.one,
+            new Color(1, 0, 0, 0.3f));
 
     public virtual int PowerLevel {
         get { return powerLevel < 0 ? 0 : powerLevel; }
@@ -69,6 +75,10 @@ public class CompRedstonePower : ThingComp {
             // for glowers and power switch
             parent.BroadcastCompSignal(isOn ? "PowerTurnedOn" : "PowerTurnedOff");
         }
+    }
+
+    public void CompPrintForOverlay(SectionLayer layer) {
+        wireGraphic.Print(layer, parent, 0);
     }
 
     public override string CompInspectStringExtra(){
