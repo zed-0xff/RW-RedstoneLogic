@@ -136,6 +136,58 @@
   </ThingDef>
 
   <ThingDef ParentName="RedstoneBuildingBase">
+    <defName>RedstoneButton</defName>
+    <label>button</label>
+    <description>A button is a non-solid block that produces a temporary redstone signal when pressed.
+Pulse length depends on the material used.</description>
+    <!--thingClass>RedstoneLogic.Building_Lever</thingClass-->
+    <graphicData>
+      <texPath>Blocky/B/Button</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1.5, 1.5)</drawSize>
+    </graphicData>
+    <fillPercent>0.15</fillPercent>
+    <clearBuildingArea>false</clearBuildingArea>
+    <altitudeLayer>BuildingBelowTop</altitudeLayer>
+    <building>
+      <isEdifice>false</isEdifice>
+    </building>
+    <statBases>
+      <MaxHitPoints>30</MaxHitPoints>
+      <WorkToBuild>100</WorkToBuild>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <selectable>true</selectable>
+    <costStuffCount>5</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costList>
+      <Redstone>2</Redstone>
+    </costList>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_Button">
+        <baseDelay>60</baseDelay>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+    </comps>
+    <tickerType>Normal</tickerType>
+    <placeWorkers>
+      <li>RedstoneLogic.PlaceWorker_OnWall</li>
+    </placeWorkers>
+    <modExtensions>
+      <li Class="RedstoneLogic.ExtPistonMoveable">
+        <breaks>true</breaks>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneBuildingBase">
     <defName>RedstoneTorch</defName>
     <label>redstone torch</label>
     <description>Redstone torches can be used to power blocks and transmission components such as redstone dust, activate mechanism components such as pistons. Produces a small amount of light.</description>

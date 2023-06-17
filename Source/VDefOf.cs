@@ -7,6 +7,7 @@ namespace RedstoneLogic;
 public static class VDefOf {
     public static ThingDef RedstoneWire;
     public static ThingDef TripwireHook;
+    public static ThingDef Blocky_Block;
 
     public static RulePackDef DamageEvent_Piston;
 

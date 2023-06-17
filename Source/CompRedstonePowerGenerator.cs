@@ -6,13 +6,15 @@ namespace RedstoneLogic;
 public class CompRedstonePowerGenerator : CompRedstonePower {
     CompFlickable flickableComp;
 
+    public virtual bool GeneratesPower => flickableComp == null || flickableComp.SwitchIsOn;
+
     public override void PostSpawnSetup(bool respawningAfterLoad){
         base.PostSpawnSetup(respawningAfterLoad);
         flickableComp = parent.GetComp<CompFlickable>();
     }
 
     public override void CompTick(){
-        if( flickableComp == null || flickableComp.SwitchIsOn ){
+        if( GeneratesPower ){
             powerLevel = MaxPower;
             lastPoweredTick = Find.TickManager.TicksGame;
             PushNext();

@@ -10,6 +10,7 @@
     <passability>Impassable</passability>
     <selectable>true</selectable>
     <fillPercent>1</fillPercent>
+    <altitudeLayer>Building</altitudeLayer>
     <rotatable>false</rotatable>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <tickerType>Never</tickerType>
