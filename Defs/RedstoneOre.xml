@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+  <ThingDef Name="RedstoneOre" ParentName="RockBase">
+    <defName>RedstoneOre</defName>
+    <label>redstone ore</label>
+    <description>Redstone ore is the ore block from which redstone is obtained.</description>
+    <graphicData>
+      <texPath>Blocky/Ores/RedstoneOre_Atlas</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Cutout</shaderType>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>1500</MaxHitPoints>
+    </statBases>
+    <building>
+      <isResourceRock>true</isResourceRock>
+      <mineableThing>Redstone</mineableThing>
+      <mineableYield>40</mineableYield>
+      <mineableScatterCommonality>0.15</mineableScatterCommonality>
+      <mineableScatterLumpSizeRange>2~8</mineableScatterLumpSizeRange>
+    </building>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>2.7</glowRadius>
+        <glowColor>(220,0,0,0)</glowColor>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

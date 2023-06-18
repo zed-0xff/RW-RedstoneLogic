@@ -1,0 +1,11 @@
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/SitePartDef[defName="WorkSite_Mining"]/lootTable</xpath>
+    <value>
+      <li>
+        <thing>Redstone</thing>
+        <weight>0.25</weight>
+      </li>
+    </value>
+  </Operation>
+</Patch>

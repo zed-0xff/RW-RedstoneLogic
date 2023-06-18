@@ -1,7 +1,14 @@
 # Redstone Logic
 [![Redstone Logic](About/Preview.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=)
 
-FIXME: blah blah
+## Redstone
+
+Obtaining:
+- small lumps of redstone ore will be generated on new maps
+- Ground-penetrating scanner will find lumps of buried redstone on existing maps
+- trade caravans
+- quest rewards
+- redstone mining worksites (Ideology)
 
 ## Verified compatible/supported mods
 
