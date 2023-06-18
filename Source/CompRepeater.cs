@@ -20,7 +20,7 @@ public class CompRepeater : CompRedstonePowerReceiver {
     public int Delay {
         get { return delay; }
         set {
-            delay = value;
+            delay = Mathf.Max(1, Mathf.Min(value, MaxDelay));
             for( int i=delay; i<MaxDelay; i++)
                 values[i] = false;
         }
@@ -80,7 +80,7 @@ public class CompRepeater : CompRedstonePowerReceiver {
         yield return new Command_Action
         {
             icon = ContentFinder<Texture2D>.Get("RedstoneLogic/Settings"),
-                 defaultLabel = "Meow",
+                 defaultLabel = "Set delay",
                  action = delegate {
                      Func<int, string> textGetter = ((int ticks) => string.Format("{0} ticks = {1:F2}s", ticks, ticks.TicksToSeconds()));
                      Find.WindowStack.Add( new Dialog_Slider(textGetter, 1, MaxDelay, delegate(int value)
@@ -90,6 +90,33 @@ public class CompRepeater : CompRedstonePowerReceiver {
                                 r2.Delay = value;
                          }
                          }, delay));
+                 }
+        };
+
+        yield return new Command_Action
+        {
+            icon = ContentFinder<Texture2D>.Get("UI/Buttons/Minus"),
+                 defaultLabel = "-10",
+                 action = delegate {
+                     foreach( object obj in Find.Selector.SelectedObjects){
+                        if( obj is Thing t && CompCache<CompRedstonePower>.Get(t.Position, t.Map) is CompRepeater r ){
+                            r.Delay -= 10;
+                        }
+                     }
+                 }
+        };
+
+        yield return new Command_Action
+        {
+            icon = ContentFinder<Texture2D>.Get("UI/Buttons/Plus"),
+                 defaultLabel = "+10",
+                 action = delegate {
+                     foreach( object obj in Find.Selector.SelectedObjects){
+                        if( obj is Thing t && CompCache<CompRedstonePower>.Get(t.Position, t.Map) is CompRepeater r ){
+                            r.Delay += 10;
+                            if( r.Delay == 11 ) r.Delay = 10;
+                        }
+                     }
                  }
         };
     }

@@ -2,7 +2,8 @@
 <Defs>
   <ThingDef ParentName="ResourceBase">
     <defName>Redstone</defName>
-    <label>redstone</label>
+    <label>redstone dust</label>
+    <description>A mysterious glowing mineral from a parallel universe. An essential component of all redstone-operated mechanisms.</description>
     <graphicData>
       <texPath>Blocky/R/Redstone</texPath>
       <graphicClass>Graphic_Single</graphicClass>
