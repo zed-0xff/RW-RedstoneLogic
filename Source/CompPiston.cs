@@ -435,9 +435,11 @@ public class CompPiston : CompRedstonePowerReceiver {
         if( Prefs.DevMode ){
             r += "\nOpenPct: " + OpenPct + ", CanExtend: " + CanExtend() + ", speed: " + Props.baseSpeed;
         }
-        Thing t = GetBlocker();
-        if( t != null ){
-            r += "\n" + "BlockedBy".Translate(t).CapitalizeFirst();
+        if( TransmitsPower ){
+            Thing t = GetBlocker();
+            if( t != null ){
+                r += "\n" + "BlockedBy".Translate(t).CapitalizeFirst();
+            }
         }
         return r;
     }

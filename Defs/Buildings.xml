@@ -367,9 +367,9 @@ Pulse length depends on the material used.</description>
       </li>
     </comps>
     <statBases>
-      <MaxHitPoints>50</MaxHitPoints>
+      <MaxHitPoints>200</MaxHitPoints>
       <WorkToBuild>300</WorkToBuild>
-      <Mass>20</Mass>
+      <Mass>50</Mass>
       <Beauty>0</Beauty>
     </statBases>
     <costList>
