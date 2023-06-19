@@ -1,7 +1,11 @@
 # Redstone Logic
 [![Redstone Logic](About/Preview.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=)
 
-## Redstone
+## Redstone dust
+
+![](screens/redstone_ore.png)
+
+A mysterious glowing mineral from a parallel universe. An essential component of all redstone-operated mechanisms.
 
 Obtaining:
 - small lumps of redstone ore will be generated on new maps
