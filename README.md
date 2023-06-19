@@ -1,5 +1,5 @@
 # Redstone Logic
-[![Redstone Logic](About/Preview.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=)
+[![Redstone Logic](About/Preview.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2991569144)
 
 ## Redstone dust
 
