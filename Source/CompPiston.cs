@@ -92,11 +92,13 @@ public class CompPiston : CompRedstonePowerReceiver {
     public Thing GetBlocker(){
         IntVec3 nextCell = pistonCell + direction;
 
+        bool toWall = false;
         foreach( Thing t in parent.Map.thingGrid.ThingsListAtFast(nextCell) ){
             if( t is Building_Storage bs ){
-                PushThingsToStorage(bs);
                 return GetBlocker_Storage(bs);
             }
+            if( t.def.passability == Traversability.Impassable )
+                toWall = true;
         }
 
         foreach( Thing t in parent.Map.thingGrid.ThingsListAtFast(pistonCell)){
@@ -137,8 +139,12 @@ public class CompPiston : CompRedstonePowerReceiver {
             if( t is Frame )
                 return t;
 
-            if( t.def.EverStorable(willMinifyIfPossible: false) )
-                continue;
+            if( t.def.EverStorable(willMinifyIfPossible: false) ){
+                if( toWall )
+                    return t;
+                else
+                    continue;
+            }
 
             return t;
         }
@@ -163,14 +169,22 @@ public class CompPiston : CompRedstonePowerReceiver {
         }
     }
 
+    bool hasWallAt(IntVec3 pos){
+        foreach( Thing t in parent.Map.thingGrid.ThingsListAtFast(pos) ){
+            if( t.def.passability == Traversability.Impassable )
+                return true;
+        }
+        return false;
+    }
+
     void MoveThing(Thing t, IntVec3 newPos, HashSet<Thing> processedThings, ExtPistonMoveable ext = null){
         if( processedThings.Contains(t) ) return;
         processedThings.Add(t);
 
+        bool toWall = hasWallAt(newPos);
+
         if( t is Pawn pawn ){
-            pawn.Position = newPos;
-            pawn.Notify_Teleported();
-            if( !newPos.Walkable(parent.Map) ){
+            if( toWall ){
                 var dt = new BattleLogEntry_DamageTaken(pawn, VDefOf.DamageEvent_Piston);
                 Find.BattleLog.Add(dt);
                 float dmg = Props.damageRange.RandomInRange;
@@ -180,6 +194,9 @@ public class CompPiston : CompRedstonePowerReceiver {
                 pawn.TakeDamage(dinfo).AssociateWithLog(dt);
                 dinfo.SetAmount(dmg/4);
                 parent.TakeDamage(dinfo);
+            } else {
+                pawn.Position = newPos;
+                pawn.Notify_Teleported();
             }
             return;
         }
@@ -215,6 +232,8 @@ public class CompPiston : CompRedstonePowerReceiver {
             t.Position = newPos;
             t.SpawnSetup(parent.Map, false);
         } else {
+            if( toWall )
+                return;
             t.Position = newPos;
         }
 
