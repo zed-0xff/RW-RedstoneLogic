@@ -15,7 +15,7 @@
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <tickerType>Never</tickerType>
     <thingCategories>
-      <li>BuildingsFurniture</li> <!-- FIXME -->
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/Block</texPath>

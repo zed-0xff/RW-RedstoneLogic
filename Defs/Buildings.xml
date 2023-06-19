@@ -299,7 +299,7 @@ Pulse length depends on the material used.</description>
     <pathCost>20</pathCost>
     <rotatable>false</rotatable>
     <thingCategories>
-      <li>BuildingsFurniture</li>
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/R/RedstoneLamp_north</texPath>
@@ -354,7 +354,7 @@ Pulse length depends on the material used.</description>
     <fillPercent>0.50</fillPercent>
     <rotatable>true</rotatable>
     <thingCategories>
-      <li>BuildingsFurniture</li> <!-- FIXME -->
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/R/RedstoneBlock</texPath>
@@ -390,7 +390,7 @@ Pulse length depends on the material used.</description>
     <fillPercent>0.50</fillPercent>
     <rotatable>true</rotatable>
     <thingCategories>
-      <li>BuildingsFurniture</li> <!-- FIXME -->
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/P/PistonBase</texPath>
@@ -502,7 +502,7 @@ A sticky piston is a variant that can additonally pull most blocks when it retra
     <pathCost>20</pathCost>
     <rotatable>true</rotatable>
     <thingCategories>
-      <li>BuildingsFurniture</li> <!-- FIXME -->
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/T/Tnt</texPath>
@@ -555,7 +555,7 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <pathCost>10</pathCost>
     <rotatable>false</rotatable>
     <thingCategories>
-      <li>BuildingsFurniture</li> <!-- FIXME -->
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/D/DaylightDetector_north</texPath>
@@ -596,7 +596,7 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <pathCost>10</pathCost>
     <rotatable>true</rotatable>
     <thingCategories>
-      <li>BuildingsFurniture</li> <!-- FIXME -->
+      <li>BuildingsBlocky</li>
     </thingCategories>
     <graphicData>
       <texPath>Blocky/R/RepeaterOff</texPath>

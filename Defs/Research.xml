@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-  <!--ResearchTabDef>
-    <defName>Blocky</defName>
-    <label>Blocky</label>
-  </ResearchTabDef-->
-
   <ResearchProjectDef>
     <defName>Redstone</defName>
     <label>Redstone</label>
-    <description>FIXME</description>
+    <description>A mysterious glowing mineral from a parallel universe. An essential component of all redstone-operated mechanisms.</description>
     <baseCost>512</baseCost>
     <techLevel>Medieval</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>4.90</researchViewY>
+    <prerequisites>
+      <li>Stonecutting</li>
+    </prerequisites>
   </ResearchProjectDef>
 </Defs>

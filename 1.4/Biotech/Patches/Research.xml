@@ -1,0 +1,10 @@
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ResearchProjectDef[defName="Redstone"]</xpath>
+    <value>
+      <requiredStudied>
+        <li>Redstone</li>
+      </requiredStudied>
+    </value>
+  </Operation>
+</Patch>
