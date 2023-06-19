@@ -14,6 +14,75 @@ Obtaining:
 - quest rewards
 - redstone mining worksites (Ideology)
 
+## Redstone wire
+
+![](screens/redstone_wire.png)
+
+Similar to electric conduit, redstone wire transmits redstone power.
+Power level drops by 1 for every cell of redstone wire.
+Thus, redstone wire can transmit power for no more than 15 cells. 
+
+## Generators
+
+![](screens/generators.png)
+
+- **Redstone Torch** - generates signal of level 15, cannot be moved, never burns out
+- **Redstone Block** - generates signal of level 15, can me moved, can be pushed by pistons
+- **Lever** - generates signal of level 15 when switched on, cannot be moved
+
+## Daylight Detector
+
+![](screens/detectors.gif)
+
+Produces redstone power in proportion to the daylight cycle. Can be switched to moonlight mode. Is not affected by roofs or artificial light sources.
+
+## Tripwire Hook
+
+![](screens/tripwire.png)
+
+Emits a redstone signal when any pawn or item appears between two hooks.
+One hook can have up to 4 links.
+Floor-level buildings, like pressure plates, will not trigger the hook.
+
+## Pressure plates
+
+![](screens/pressure_plates.png)
+
+Wooden pressure plates can detect all entities.
+
+Stone pressure plates can detect only pawns/animals.
+
+Golden ("Light") detect all entities, and the signal strength equals the number of entities stood on one.
+
+Steel ("Heavy") is similar to golden, but measures groups of 10 entities.
+
+## Repeater
+
+![](screens/repeaters.gif)
+
+Repeats incoming signal with a configurable 1..250 ticks delay.
+
+## Block
+
+![](screens/blocks.png)
+
+Just a simple stuffable block that can be pushed by pistons. Think of it as a movable wall.
+
+## Piston and sticky piston
+
+**Piston**:
+- pushes any items into an empty cell
+- pushes acceptable items into a storage
+- breaks any plants/trees, producing harvested resources, if any
+- pushes pawns
+- if pawns are pushed against the wall, they receive blunt damage
+- pushes blocks
+- pushes other pistons if they're not extended
+
+**Sticky piston**:
+- pushes all things similar to a regular one
+- pulls blocks / pistons back
+
 ## Verified compatible/supported mods
 
 - [LWM's Deep Storage](https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896)
