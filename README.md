@@ -1,6 +1,8 @@
 # Redstone Logic
 [![Redstone Logic](About/Preview.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2991569144)
 
+Requires research. Prerequisite: stonecutting.
+
 Not official Minecraft product. Not approved by or associated with Mojang or Microsoft.
 
 ## Redstone dust
