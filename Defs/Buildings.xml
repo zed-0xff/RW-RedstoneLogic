@@ -585,10 +585,7 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     </modExtensions>
   </ThingDef>
 
-  <ThingDef ParentName="RedstoneBuildingBase">
-    <defName>Repeater</defName>
-    <label>repeater</label>
-    <description>A redstone repeater can be used in four different ways: to "repeat" redstone signals back to full strength, delay signals, prevent signals moving backwards, or to "lock" signals in one state.</description>
+  <ThingDef ParentName="RedstoneBuildingBase" Name="RedstoneGate" Abstract="True">
     <minifiedDef>MinifiedThing</minifiedDef>
     <passability>PassThroughOnly</passability>
     <selectable>true</selectable>
@@ -598,24 +595,8 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <thingCategories>
       <li>BuildingsBlocky</li>
     </thingCategories>
-    <graphicData>
-      <texPath>Blocky/R/RepeaterOff</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
-    </graphicData>
     <staticSunShadowHeight>0.1</staticSunShadowHeight>
     <drawerType>MapMeshAndRealTime</drawerType>
-    <comps>
-      <li Class="RedstoneLogic.CompProperties_RedstonePower">
-        <compClass>RedstoneLogic.CompRepeater</compClass>
-      </li>
-      <li Class="RedstoneLogic.CompProperties_PoweredGraphic">
-        <graphicData>
-          <texPath>Blocky/R/RepeaterOn</texPath>
-          <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>(1.5, 1.5)</drawSize>
-        </graphicData>
-      </li>
-    </comps>
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <WorkToBuild>300</WorkToBuild>
@@ -629,4 +610,62 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
       <li Class="RedstoneLogic.ExtPistonMoveable"/>
     </modExtensions>
   </ThingDef>
+
+  <ThingDef ParentName="RedstoneGate">
+    <defName>Repeater</defName>
+    <label>repeater</label>
+    <description>A redstone repeater can be used in four different ways: to "repeat" redstone signals back to full strength, delay signals, prevent signals moving backwards, or to "lock" signals in one state.</description>
+    <graphicData>
+      <texPath>Blocky/R/RepeaterOff</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+    </graphicData>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompRepeater</compClass>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_PoweredGraphic">
+        <graphicData>
+          <texPath>Blocky/R/RepeaterOn</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>(1.5, 1.5)</drawSize>
+        </graphicData>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RedstoneGate">
+    <defName>Comparator</defName>
+    <label>comparator</label>
+    <description>A redstone comparator is a block that can produce an output signal from its front by reading chests, lecterns, beehives and similar blocks, or repeat a signal without changing its strength. It can also be set to either stop outputting a signal when its side input recieves a stronger one (front torch off), or subtract its side input's signal strength from its output (front torch on).</description>
+    <graphicData>
+      <texPath>Blocky/R/RepeaterOff</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+    </graphicData>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+        <compClass>RedstoneLogic.CompComparator</compClass>
+      </li>
+      <li Class="RedstoneLogic.CompProperties_PoweredGraphic">
+        <graphicData>
+          <texPath>Blocky/R/RepeaterOn</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>(1.5, 1.5)</drawSize>
+        </graphicData>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!--ThingDef ParentName="RedstoneGate">
+    <defName>RedstoneGateOR</defName>
+    <label>OR gate</label>
+    <description>An OR gate is a gate which uses two or more inputs and whenever any input is "on", the output is also "on". The only time the output is "off" is when all inputs are "off"</description>
+    <graphicData>
+      <texPath>RedstoneLogic/GateOR</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <comps>
+      <li Class="RedstoneLogic.CompProperties_RedstonePower">
+      </li>
+    </comps>
+  </ThingDef-->
 </Defs>

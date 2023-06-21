@@ -48,13 +48,10 @@ public class CompRedstonePower : ThingComp {
     }
 
     protected void PushNext(CompRedstonePower src = null){
-        int loss = this is CompRedstonePowerTransmitter ? 1 : 0;
-        if( PowerLevel <= loss ) return;
-
         foreach (IntVec3 cell in GenAdj.CellsAdjacentCardinal(parent)){
             CompRedstonePower neighbor = CompCache<CompRedstonePower>.Get(cell, parent.Map);
             if( neighbor is CompRedstonePowerReceiver pt && pt != src ){
-                pt.TryPushPower(PowerLevel - loss, this);
+                pt.TryPushPower(PowerLevel, this);
             }
         }
     }

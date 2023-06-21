@@ -5,6 +5,9 @@ namespace RedstoneLogic;
 
 public class CompRedstonePowerReceiver : CompRedstonePower {
     public virtual bool TryPushPower(int amount, CompRedstonePower src){
+        if( this is CompRedstonePowerTransmitter && src is CompRedstonePowerTransmitter )
+            amount--;
+
         if( amount <= 0 ) return false;
         if( amount > MaxPower )
             amount = MaxPower;
