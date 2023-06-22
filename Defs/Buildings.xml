@@ -638,7 +638,7 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
     <label>comparator</label>
     <description>A redstone comparator is a block that can produce an output signal from its front by reading chests, lecterns, beehives and similar blocks, or repeat a signal without changing its strength. It can also be set to either stop outputting a signal when its side input recieves a stronger one (front torch off), or subtract its side input's signal strength from its output (front torch on).</description>
     <graphicData>
-      <texPath>Blocky/R/RepeaterOff</texPath>
+      <texPath>Blocky/C/ComparatorOff</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
     </graphicData>
     <comps>
@@ -647,7 +647,7 @@ Sources of light (torches, glowstone, etc.) cannot activate a daylight detector.
       </li>
       <li Class="RedstoneLogic.CompProperties_PoweredGraphic">
         <graphicData>
-          <texPath>Blocky/R/RepeaterOn</texPath>
+          <texPath>Blocky/C/ComparatorOn</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>(1.5, 1.5)</drawSize>
         </graphicData>
