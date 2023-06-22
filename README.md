@@ -74,6 +74,12 @@ Best combined with tripwires or pressure plates :)
 
 Repeats incoming signal with a configurable 1..250 ticks delay.
 
+## Comparator
+
+![](screens/comparator.png)
+
+A redstone comparator is a block that can produce an output signal from its front by reading chests, lecterns, beehives and similar blocks, or repeat a signal without changing its strength. It can also be set to either stop outputting a signal when its side input recieves a stronger one (front torch off), or subtract its side input's signal strength from its output (front torch on).
+
 ## Block
 
 ![](screens/blocks.png)
