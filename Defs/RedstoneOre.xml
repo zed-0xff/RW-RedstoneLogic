@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-  <ThingDef Name="RedstoneOre" ParentName="RockBase">
-    <defName>RedstoneOre</defName>
+  <ThingDef Name="MineableRedstone" ParentName="RockBase">
+    <defName>MineableRedstone</defName>
     <label>redstone ore</label>
     <description>Redstone ore is the ore block from which redstone is obtained.</description>
     <graphicData>
@@ -25,5 +25,13 @@
         <glowColor>(220,0,0,0)</glowColor>
       </li>
     </comps>
+  </ThingDef>
+
+  <!-- deprecated, left for savegame compatibility -->
+  <ThingDef ParentName="MineableRedstone">
+    <defName>RedstoneOre</defName>
+    <building>
+      <mineableScatterCommonality>0</mineableScatterCommonality>
+    </building>
   </ThingDef>
 </Defs>
