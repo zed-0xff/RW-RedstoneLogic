@@ -10,7 +10,11 @@ public class SectionLayer_RedstonePowerGrid : SectionLayer_Things
         : base(section)
     {
         requireAddToMapMesh = false;
+#if RW15
+        relevantChangeTypes = MapMeshFlagDefOf.Buildings;
+#else
         relevantChangeTypes = MapMeshFlag.Buildings;
+#endif
     }
 
     private static int lastFrameDraw;

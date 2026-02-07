@@ -38,7 +38,11 @@ public class CompRedstonePower : ThingComp {
         CompCache<CompRedstonePower>.Add(this);
     }
 
+#if RW16
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish){
+#else
     public override void PostDeSpawn(Map map){
+#endif
         CompCache<CompRedstonePower>.Remove(this);
     }
 

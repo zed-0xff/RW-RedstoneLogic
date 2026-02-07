@@ -29,10 +29,5 @@
 
     <soundInteract>Silver_Drop</soundInteract>
     <soundDrop>Silver_Drop</soundDrop>
-    <comps>
-      <li Class="CompProperties_Studiable" MayRequire="Ludeon.RimWorld.Biotech">
-        <cost>5</cost>
-      </li>
-    </comps>
   </ThingDef>
 </Defs>

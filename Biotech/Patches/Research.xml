@@ -1,0 +1,22 @@
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ResearchProjectDef[defName="Redstone"]</xpath>
+        <value>
+          <requiredStudied>
+            <li>Redstone</li>
+          </requiredStudied>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Redstone"]/comps</xpath>
+        <value>
+          <li Class="CompProperties_Studiable">
+            <cost>5</cost>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

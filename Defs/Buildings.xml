@@ -59,7 +59,6 @@
       <MaxHitPoints>40</MaxHitPoints>
       <WorkToBuild>35</WorkToBuild>
     </statBases>
-    <placingDraggableDimensions>1</placingDraggableDimensions>
     <costList>
       <Redstone>1</Redstone>
     </costList>
@@ -351,7 +350,7 @@ Pulse length depends on the material used.</description>
     <minifiedDef>MinifiedThing</minifiedDef>
     <passability>Impassable</passability>
     <selectable>true</selectable>
-    <fillPercent>0.50</fillPercent>
+    <fillPercent>1</fillPercent>
     <rotatable>true</rotatable>
     <thingCategories>
       <li>BuildingsBlocky</li>
@@ -387,7 +386,7 @@ Pulse length depends on the material used.</description>
     <minifiedDef>MinifiedThing</minifiedDef>
     <passability>Impassable</passability>
     <selectable>true</selectable>
-    <fillPercent>0.50</fillPercent>
+    <fillPercent>1</fillPercent>
     <rotatable>true</rotatable>
     <thingCategories>
       <li>BuildingsBlocky</li>

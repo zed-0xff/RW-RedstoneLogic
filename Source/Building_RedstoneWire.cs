@@ -16,8 +16,14 @@ class Building_RedstoneWire : Building {
     int prevMatId;
     Material matCopy;
 
+#if RW15
+    public override void DynamicDrawPhaseAt(DrawPhase phase, Vector3 drawLoc, bool flip = false) {
+        base.DynamicDrawPhaseAt(phase, drawLoc, flip);
+        if (phase != DrawPhase.Draw) return;
+#else
     public override void Draw() {
         base.Draw();
+#endif
 
         if( compRedstonePower.PowerLevel > 0 ){
             Mesh mesh = Graphic.MeshAt(Rotation);

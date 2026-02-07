@@ -4,11 +4,17 @@
     <RootNamespace>RedstoneLogic</RootNamespace>
     <TargetFramework>net472</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <LangVersion>10</LangVersion>
-    <OutputPath>../Assemblies</OutputPath>
+    <RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.6</RimWorldVersion>
+    <OutputPath>../$(RimWorldVersion)/Assemblies</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+  <PropertyGroup Condition="'$(RimWorldVersion)' == '1.5' Or '$(RimWorldVersion)' == '1.6'">
+    <DefineConstants>$(DefineConstants);RW15</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RimWorldVersion)' == '1.6'">
+    <DefineConstants>$(DefineConstants);RW16</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -17,19 +23,23 @@
 
   <ItemGroup>
     <PackageReference Include="Lib.Harmony" Version="2.2.2" ExcludeAssets="runtime" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Condition="'$(RimWorldVersion)' == '1.4'">
+      <Version>1.4.*</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Condition="'$(RimWorldVersion)' == '1.5'">
+      <Version>1.5.*</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Condition="'$(RimWorldVersion)' == '1.6'">
+      <Version>1.6.*</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
     <Reference Include="BlockyCore">
-      <HintPath>../../BlockyCore/Assemblies/BlockyCore.dll</HintPath>
+      <HintPath>..\..\RW-BlockyCore\$(RimWorldVersion)\Assemblies\BlockyCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

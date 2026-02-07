@@ -26,10 +26,17 @@ public class CompPiston : CompRedstonePowerReceiver {
         CompCache<CompPiston>.Add(this, parent.Map, pistonCell);
     }
 
+#if RW16
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish){
+        CompCache<CompPiston>.Remove(this);
+        base.PostDeSpawn(map, mode);
+    }
+#else
     public override void PostDeSpawn(Map map){
         CompCache<CompPiston>.Remove(this);
         base.PostDeSpawn(map);
     }
+#endif
 
     public override void Notify_Teleported(){
         base.Notify_Teleported();

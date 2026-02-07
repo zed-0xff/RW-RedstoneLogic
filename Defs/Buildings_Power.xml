@@ -27,7 +27,6 @@
       <Flammability>0.5</Flammability>
       <Beauty>-2</Beauty>
     </statBases>
-    <placingDraggableDimensions>0</placingDraggableDimensions>
     <costList>
       <Steel>15</Steel>
       <ComponentIndustrial>1</ComponentIndustrial>
